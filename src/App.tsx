@@ -1,12 +1,8 @@
-import "./App.css";
-import { LogIn } from "./pages/LogIn/Login";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/router";
 
-function App() {
-  return (
-    <>
-      <LogIn />
-    </>
-  );
-}
+export const App = () => {
+  return <RouterProvider router={router} />;
+};
 
 export default App;
