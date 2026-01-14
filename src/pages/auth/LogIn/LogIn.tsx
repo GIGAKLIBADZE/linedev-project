@@ -1,15 +1,19 @@
 import { useState, type FormEvent } from "react";
 import { login } from "../../../auth/auth.service";
+import { useNavigate } from "react-router-dom";
 
 export const LogIn = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const navigate = useNavigate();
+
   const handleLogIn = async (event: FormEvent) => {
     event.preventDefault();
-
+    
     const data = await login({ email, password });
     localStorage.setItem("accessToken", data.accessToken);
+    navigate("/app");
   };
 
   return (
