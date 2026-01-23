@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { ROUTES } from "./routes";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { AppLayout } from "../pages/layout/AppLayout";
 
 export const router = createBrowserRouter([
   {
@@ -14,11 +15,16 @@ export const router = createBrowserRouter([
     element: <ProtectedRoute />,
     children: [
       {
-        path: ROUTES.app.root,
-        async lazy() {
-          const { Home } = await import("../pages/app");
-          return { Component: Home };
-        },
+        element: <AppLayout />,
+        children: [
+          {
+            path: ROUTES.app.root,
+            async lazy() {
+              const { Home } = await import("../pages/app");
+              return { Component: Home };
+            },
+          },
+        ],
       },
     ],
   },
